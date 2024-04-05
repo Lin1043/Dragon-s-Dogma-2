@@ -1,6 +1,8 @@
-#include <bits/stdc++.h>
+#ifndef GOODS_TABLES_H
+#define GOODS_TABLES_H 
+#include <deque>
 
-using namespace std;
+#include "MyMap.h"
 
 class Goods {
  private:
@@ -13,14 +15,18 @@ class Goods {
 class Goods_Table {
  private:
   int tot_goods;
-  deque<Goods *> goods_list;
+  std::deque<std::shared_ptr<Goods>> goods_list;
   Goods *goods_map[N][N];
+
   static Goods_Table *GT;
-  MyMap &mp = MyMap::GetMap();
-  Goods_Table();
+  
+  Goods_Table(); 
 
  public:
   static Goods_Table &GetGT();
+
   void insert(int x, int y, int val, int gen_time);
   void clear_disappeared_goods();
 };
+
+#endif
